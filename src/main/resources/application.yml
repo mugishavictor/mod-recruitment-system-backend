@@ -1,0 +1,31 @@
+server:
+  port: ${PORT:8081}
+
+spring:
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://recruitment_user:EKXvqQbp6YIcma3dWCrDZVbFPzA0Ac2U@dpg-d6ospbnafjfc739r3vf0-a.frankfurt-postgres.render.com/recruitment_db_9lu2}
+    username: ${DB_USERNAME:recruitment_user}
+    password: ${DB_PASSWORD:EKXvqQbp6YIcma3dWCrDZVbFPzA0Ac2U}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:12345678901234567890123456789012345678901234567890}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+
+  upload-dir: ${UPLOAD_DIR:uploads}
+
+cors:
+  allowed-origin: ${FRONTEND_URL:http://localhost:3000}
