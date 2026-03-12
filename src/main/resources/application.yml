@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: ${DATABASE_URL:jdbc:postgresql://recruitment_user:EKXvqQbp6YIcma3dWCrDZVbFPzA0Ac2U@dpg-d6ospbnafjfc739r3vf0-a.frankfurt-postgres.render.com/recruitment_db_9lu2}
+    url: ${DATABASE_URL:jdbc:postgresql://dpg-d6ospbnafjfc739r3vf0-a.frankfurt-postgres.render.com:5432/recruitment_db_9lu2}
     username: ${DB_USERNAME:recruitment_user}
     password: ${DB_PASSWORD:EKXvqQbp6YIcma3dWCrDZVbFPzA0Ac2U}
 
