@@ -1,6 +1,8 @@
 package com.example.recruitment.application;
 
-import com.example.recruitment.application.dto.*;
+import com.example.recruitment.application.dto.StatusLookupResponse;
+import com.example.recruitment.application.dto.SubmissionResponse;
+import com.example.recruitment.application.dto.SubmitApplicationRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -15,7 +17,7 @@ public class ApplicationController {
     private final ApplicationService applicationService;
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ApplicationResponse submit(
+    public SubmissionResponse submit(
             @Valid @RequestPart("data") SubmitApplicationRequest request,
             @RequestPart("cv") MultipartFile cv) throws Exception {
         return applicationService.submit(request, cv);

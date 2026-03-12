@@ -20,7 +20,7 @@ public class DashboardService {
         long approved = all.stream().filter(a -> a.getStatus() == ApplicationStatus.APPROVED).count();
         long rejected = all.stream().filter(a -> a.getStatus() == ApplicationStatus.REJECTED).count();
         long pending = all.stream().filter(
-                a -> a.getStatus() == ApplicationStatus.SUBMITTED || a.getStatus() == ApplicationStatus.IN_REVIEW)
+                a -> a.getStatus() == ApplicationStatus.PENDING)
                 .count();
 
         return Map.of(

@@ -1,6 +1,8 @@
 package com.example.recruitment.application;
 
-import com.example.recruitment.application.dto.*;
+import com.example.recruitment.application.dto.StatusLookupResponse;
+import com.example.recruitment.application.dto.SubmissionResponse;
+import com.example.recruitment.application.dto.SubmitApplicationRequest;
 import com.example.recruitment.common.enums.ApplicationStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,7 +30,7 @@ public class ApplicationService {
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
 
     @Transactional
-    public ApplicationResponse submit(SubmitApplicationRequest request, MultipartFile cv) throws IOException {
+    public SubmissionResponse submit(SubmitApplicationRequest request, MultipartFile cv) throws IOException {
         validateCv(cv);
 
         Applicant applicant = applicantRepository.findByNid(request.nid())
@@ -53,13 +55,13 @@ public class ApplicationService {
         JobApplication application = JobApplication.builder()
                 .applicant(applicant)
                 .referenceCode("APP-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase())
-                .status(ApplicationStatus.SUBMITTED)
+                .status(ApplicationStatus.PENDING)
                 .cvFile(savedCv)
                 .build();
 
         application = jobApplicationRepository.save(application);
 
-        return new ApplicationResponse(
+        return new SubmissionResponse(
                 application.getId(),
                 application.getReferenceCode(),
                 applicant.getFullName(),

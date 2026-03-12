@@ -3,6 +3,8 @@ package com.example.recruitment.application;
 import com.example.recruitment.application.dto.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,5 +31,10 @@ public class HrApplicationController {
     @PatchMapping("/{id}/review")
     public void review(@PathVariable Long id, @Valid @RequestBody ReviewApplicationRequest request) {
         hrApplicationService.review(id, request);
+    }
+
+    @GetMapping("/{id}/cv")
+    public ResponseEntity<Resource> downloadCv(@PathVariable Long id) throws Exception {
+        return hrApplicationService.downloadCv(id);
     }
 }
